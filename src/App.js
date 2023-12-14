@@ -16,6 +16,15 @@ const Basic = () => (
         ) {
           errors.email = "Invalid email address";
         }
+
+        if (!values.password) {
+          errors.password = "required";
+        } else if (values.password.length < 6) {
+          errors.password =
+            "Length must be at least 6 characters and capitalized";
+        } else if (values.password[0] !== values.password[0].toUpperCase()) {
+          errors.password = "First letter isn't UpperCase";
+        }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
@@ -27,9 +36,7 @@ const Basic = () => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field></Field>
-          <Field type="email" name="email" required />
-          <ErrorMessage name="email" component="div" />
+          <Field type="firstName" name="firstName" required></Field>
           <Field type="email" name="email" required />
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
