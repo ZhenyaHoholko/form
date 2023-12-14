@@ -22,8 +22,8 @@ const Basic = () => (
         } else if (values.password.length < 6) {
           errors.password =
             "Length must be at least 6 characters and capitalized";
-        } else if (values.password[0] !== values.password[0].toUpperCase()) {
-          errors.password = "First letter isn't UpperCase";
+        } else if (values.password.match(/[A-Z]/)) {
+          errors.password = "At least one uppercase letter is required";
         }
         return errors;
       }}
