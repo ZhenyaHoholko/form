@@ -49,8 +49,8 @@ const Basic = () => (
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" />
-          {/* <Field type="password" name="password2" />
-          <ErrorMessage name="password2" component="div" /> */}
+          { <Field type="password" name="password2" />
+          <ErrorMessage name="password2" component="div" /> }
           <p />
           <button type="submit" disabled={isSubmitting} onclick="enterNum()">
             Submit
