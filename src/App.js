@@ -24,6 +24,8 @@ const Basic = () => (
             "Length must be at least 6 characters and capitalized";
         } else if (!/[A-Z]/.test(values.password)) {
           errors.password = "At least one uppercase letter is required";
+        } else if (values.password2 !== values.password) {
+          errors.password = "Enter the correct identical password";
         }
         return errors;
       }}
@@ -49,8 +51,11 @@ const Basic = () => (
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" />
-          { <Field type="password" name="password2" />
-          <ErrorMessage name="password2" component="div" /> }
+          <p />
+          <a>Check password</a>
+          <p />
+          <Field type="password" name="password2" />
+          <ErrorMessage name="password2" component="div" />
           <p />
           <button type="submit" disabled={isSubmitting} onclick="enterNum()">
             Submit
