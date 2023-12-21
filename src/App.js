@@ -38,7 +38,7 @@ const Basic = () => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <a>First Name</a>
+          <a>Full Name</a>
           <p />
           <Field type="input" name="firstName" required></Field>
           <p />
