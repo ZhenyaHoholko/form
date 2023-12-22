@@ -21,11 +21,11 @@ const Basic = () => (
           errors.password = "required";
         } else if (values.password.length < 6) {
           errors.password =
-            "Length must be at least 6 characters and capitalized";
+            "Length must be at least 6 characters and capitalized!";
         } else if (!/[A-Z]/.test(values.password)) {
-          errors.password = "At least one uppercase letter is required";
+          errors.password = "At least one uppercase letter is required!";
         } else if (values.password2 !== values.password) {
-          errors.password = "Enter the correct identical password";
+          errors.password = "Enter the correct identical password!";
         }
         return errors;
       }}
