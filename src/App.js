@@ -38,21 +38,21 @@ const Basic = () => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <a>Full Name</a>
+          <a>Full Name </a>
           <p />
           <Field type="input" name="firstName" required></Field>
           <p />
-          <a>Email</a>
+          <a>Email </a>
           <p />
           <Field type="email" name="email" required />
           <p />
-          <a>Password</a>
+          <a>Password </a>
           <p />
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" />
           <p />
-          <a>Check password</a>
+          <a>Check password </a>
           <p />
           <Field type="password" name="password2" />
           <ErrorMessage name="password2" component="div" />
