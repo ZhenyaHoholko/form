@@ -9,6 +9,9 @@ const Basic = () => (
       initialValues={{ firstName: "", email: "", password: "" }}
       validate={(values) => {
         const errors = {};
+        // if (firstName.join("").length == 0) {
+        //   errors.firstName = "Write Firstname";
+        // }
         if (!values.email) {
           errors.email = "Required";
         } else if (
@@ -27,6 +30,10 @@ const Basic = () => (
         } else if (values.password2 !== values.password) {
           errors.password = "Enter the correct identical password!";
         }
+
+        if (!values.date) {
+          errors.date = "Сhange your date of birth";
+        }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
@@ -41,6 +48,7 @@ const Basic = () => (
           <a>Full Name </a>
           <p />
           <Field type="input" name="firstName" required></Field>
+          <ErrorMessage name="firstName" component="div" />
           <p />
           <a>Email </a>
           <p />
@@ -56,6 +64,11 @@ const Basic = () => (
           <p />
           <Field type="password" name="password2" />
           <ErrorMessage name="password2" component="div" />
+          <p />
+          <a>Date</a>
+          <p />
+          <Field type="date" name="date" />
+          <ErrorMessage name="date" component="div" />
           <p />
           <button type="submit" disabled={isSubmitting} onclick="enterNum()">
             Submit
