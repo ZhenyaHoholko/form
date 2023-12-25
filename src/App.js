@@ -9,9 +9,9 @@ const Basic = () => (
       initialValues={{ firstName: "", email: "", password: "" }}
       validate={(values) => {
         const errors = {};
-        // if (firstName.join("").length == 0) {
-        //   errors.firstName = "Write Firstname";
-        // }
+        if (values.firstName.length == 0) {
+          errors.firstName = "Write Firstname";
+        }
         if (!values.email) {
           errors.email = "Required";
         } else if (
