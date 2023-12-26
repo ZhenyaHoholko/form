@@ -6,7 +6,7 @@ const Basic = () => (
   <div>
     <h1>Any place in your app!</h1>
     <Formik
-      initialValues={{ firstName: "", email: "", password: "", radio: "" }}
+      initialValues={{ firstName: "", email: "", password: "" }}
       validate={(values) => {
         const errors = {};
         if (values.firstName.length == 0) {
@@ -52,7 +52,12 @@ const Basic = () => (
           <p />
           <a>Email </a>
           <p />
-          <Field type="email" name="email" required />
+          <Field
+            type="email"
+            name="email"
+            required
+            placeholder="some@some.some"
+          />
           <p />
           <a>Password </a>
           <p />
@@ -72,12 +77,17 @@ const Basic = () => (
           <p />
           <a>Gender</a>
           <p />
-          <input type="radio" id="gender1" name="gender" value="Male" />
+          <Field as="select" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </Field>
+          {/* <input type="radio" id="gender1" name="gender" value="Male" />
           <label for="gender1">Male</label>
           <input type="radio" id="gender2" name="gender" value="Female" />
           <label for="gender2">Female</label>
           <input type="radio" id="gender3" name="gender" value="Other" />
-          <label for="gender3">Other</label>
+          <label for="gender3">Other</label> */}
           <p />
           <button type="submit" disabled={isSubmitting} onclick="enterNum()">
             Submit
