@@ -82,12 +82,12 @@ const Basic = () => (
             <option value="Female">Female</option>
             <option value="Other">Other</option>
           </Field>
-          {/* <input type="radio" id="gender1" name="gender" value="Male" />
+          <input type="radio" id="gender1" name="gender" value="Male" />
           <label for="gender1">Male</label>
           <input type="radio" id="gender2" name="gender" value="Female" />
           <label for="gender2">Female</label>
           <input type="radio" id="gender3" name="gender" value="Other" />
-          <label for="gender3">Other</label> */}
+          <label for="gender3">Other</label>
           <p />
           <button type="submit" disabled={isSubmitting} onclick="enterNum()">
             Submit
