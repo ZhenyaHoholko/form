@@ -97,7 +97,7 @@ const Basic = () => {
                 <InputMask
                   mask="+375 (99) 999-99-99"
                   {...field}
-                  placeholder="+375 (29) 777-65-65"
+                  placeholder="+375 (29) 777-77-77"
                 />
               )}
             </Field>
