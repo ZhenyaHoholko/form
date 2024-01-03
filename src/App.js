@@ -19,10 +19,9 @@ const Basic = () => {
         }}
         validate={(values) => {
           const errors = {};
-          if (values.firstName.length == 0) {
-            errors.firstName = "Write Firstname";
-          } else if (!/^[а-яёА-ЯЁA-Z0-9._%+-]$/i.test(values.firstName)) {
-            errors.firstName = "Write name";
+          if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
+            errors.firstName =
+              "Enter the name in Cyrillic or Latin from 2 to 25 characters";
           }
 
           if (!values.email) {
