@@ -13,13 +13,18 @@ const Basic = () => {
           firstName: "",
           email: "",
           password: "",
+          password2: "",
+          date: "",
           phoneNumber: "",
         }}
         validate={(values) => {
           const errors = {};
           if (values.firstName.length == 0) {
             errors.firstName = "Write Firstname";
+          } else if (!/^[а-яёА-ЯЁA-Z0-9._%+-]$/i.test(values.firstName)) {
+            errors.firstName = "Write name";
           }
+
           if (!values.email) {
             errors.email = "Required";
           } else if (
