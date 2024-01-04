@@ -1,10 +1,9 @@
 // Render Prop
-import React, { useState } from "react";
+import React from "react";
 import InputMask from "react-input-mask";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const Basic = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
   return (
     <div>
       <h1>Any place in your app!</h1>
@@ -46,6 +45,10 @@ const Basic = () => {
           if (!values.date) {
             errors.date = "Сhange your date of birth";
           }
+
+          if (!values.phoneNumber) {
+            errors.phoneNumber = "Write phone number";
+          }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -55,56 +58,45 @@ const Basic = () => {
           }, 400);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values, setFieldValue }) => (
           <Form>
-            <a>Full Name </a>
-            <p />
-            <Field type="input" name="firstName" required></Field>
+            <label htmlFor="firstName">Full Name</label>
+            <Field type="input" name="firstName" id="firstName" required />
             <ErrorMessage name="firstName" component="div" />
             <p />
-            <a>Email </a>
-            <p />
-            <Field
-              type="email"
-              name="email"
-              required
-              placeholder="some@some.some"
-            />
-            <p />
-            <a>Password </a>
-            <p />
+            <label htmlFor="email">Email</label>
+            <Field name="email" id="email" placeholder="some@some.some" />
             <ErrorMessage name="email" component="div" />
-            <Field type="password" name="password" />
+            <p />
+            <label htmlFor="password">Password</label>
+            <Field type="password" name="password" id="password" />
             <ErrorMessage name="password" component="div" />
             <p />
-            <a>Check password </a>
-            <p />
-            <Field type="password" name="password2" />
+            <label htmlFor="password2">Check password</label>
+            <Field type="password" name="password2" id="password2" />
             <ErrorMessage name="password2" component="div" />
             <p />
-            <a>Date of birth</a>
-            <p />
-            <Field type="date" name="date" />
+            <label htmlFor="date">Date of birth</label>
+            <Field type="date" name="date" id="date" />
             <ErrorMessage name="date" component="div" />
             <p />
-            <a>Gender</a>
-            <p />
-            <Field as="select" name="gender">
+            <label htmlFor="gender">Gender</label>
+            <Field as="select" placeholder="Choose" name="gender" id="gender">
+              <option onSelected disabled></option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </Field>
-            <p />
             <ErrorMessage name="gender" component="div" />
-            <Field name="phoneNumber">
-              {({ field }) => (
-                <InputMask
-                  mask="+375 (99) 999-99-99"
-                  {...field}
-                  placeholder="+375 (29) 777-77-77"
-                />
-              )}
-            </Field>
+            <p />
+            <label htmlFor="phoneNumber">Phone number</label>
+            <InputMask
+              mask="+375 (99) 999-99-99"
+              value={values.phoneNumber}
+              onChange={(e) => setFieldValue("phoneNumber", e.target.value)}
+              placeholder="+375 (29) 777-77-77"
+              id="phoneNumber"
+            />
             <ErrorMessage name="phoneNumber" component="div" />
             <p />
             <button type="submit" disabled={isSubmitting}>
