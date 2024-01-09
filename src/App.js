@@ -18,7 +18,7 @@ const Basic = () => {
         }}
         validate={(values) => {
           const errors = {};
-          const date = new Date();
+          const date = new Date().getFullYear();
           // const adultTime= date.setFullYear(date.getFullYear() - 18);
 
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
@@ -51,26 +51,26 @@ const Basic = () => {
             errors.password2 =
               "Length must be at least 6 characters and capitalized!";
           } else if (!/[A-Z]/.test(values.password)) {
-            errors.password2 = "At least one uppercase letter is required!";
+            errors.password2 =
+              "The password must contain at least one capital Latin letter!";
           } else if (values.password2 !== values.password) {
             errors.password = "Enter the correct identical password!";
           }
 
           if (!values.date) {
             errors.date = "Сhange your date of birth";
-            // } else if (){
-
-            // }
-
-            if (!values.phoneNumber) {
-              errors.phoneNumber = "Write phone number";
-              console.log(values.phoneNumber);
-            }
-            /*else if (values.phoneNumber.length != 12) {
-            errors.phoneNumber = "Write phone number correct";
-          }*/
-            return errors;
+          } else if (date - values.date < 18) {
+            errors.date = "You are under 18";
           }
+
+          if (!values.phoneNumber) {
+            errors.phoneNumber = "Write phone number";
+          } else if (
+            !/^\+375 \(\d{2}\) \d{3}-\d{2}-\d{2}$/.test(values.phoneNumber)
+          ) {
+            errors.phoneNumber = "Write phone number correct";
+          }
+          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
