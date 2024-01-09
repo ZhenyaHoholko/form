@@ -18,6 +18,9 @@ const Basic = () => {
         }}
         validate={(values) => {
           const errors = {};
+          const date = new Date();
+          // const adultTime= date.setFullYear(date.getFullYear() - 18);
+
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
             errors.firstName =
               "Enter the name in Cyrillic or Latin from 2 to 25 characters";
@@ -32,7 +35,7 @@ const Basic = () => {
           }
 
           if (!values.password) {
-            errors.password = "required";
+            errors.password = "Required";
           } else if (values.password.length < 6) {
             errors.password =
               "Length must be at least 6 characters and capitalized!";
@@ -42,14 +45,32 @@ const Basic = () => {
             errors.password = "Enter the correct identical password!";
           }
 
-          if (!values.date) {
-            errors.date = "Сhange your date of birth";
+          if (!values.password2) {
+            errors.password2 = "Required";
+          } else if (values.password2.length < 6) {
+            errors.password2 =
+              "Length must be at least 6 characters and capitalized!";
+          } else if (!/[A-Z]/.test(values.password)) {
+            errors.password2 = "At least one uppercase letter is required!";
+          } else if (values.password2 !== values.password) {
+            errors.password = "Enter the correct identical password!";
           }
 
-          if (!values.phoneNumber) {
-            errors.phoneNumber = "Write phone number";
+          if (!values.date) {
+            errors.date = "Сhange your date of birth";
+            // } else if (){
+
+            // }
+
+            if (!values.phoneNumber) {
+              errors.phoneNumber = "Write phone number";
+              console.log(values.phoneNumber);
+            }
+            /*else if (values.phoneNumber.length != 12) {
+            errors.phoneNumber = "Write phone number correct";
+          }*/
+            return errors;
           }
-          return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -82,7 +103,7 @@ const Basic = () => {
             <p />
             <label htmlFor="gender">Gender</label>
             <Field as="select" placeholder="Choose" name="gender" id="gender">
-              <option onSelected disabled></option>
+              <option onSelected disabled selected></option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
