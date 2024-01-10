@@ -14,12 +14,14 @@ const Basic = () => {
           password: "",
           password2: "",
           date: "",
+          gender: "",
           phoneNumber: "",
         }}
         validate={(values) => {
           const errors = {};
-          const date = new Date().getFullYear();
-          // const adultTime= date.setFullYear(date.getFullYear() - 18);
+          const dateYears = new Date().getFullYear();
+          const dateMiliseconds = Date.now();
+          const adult = 365.25 * 60 * 60 * 24 * 1000;
 
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
             errors.firstName =
@@ -41,8 +43,6 @@ const Basic = () => {
               "Length must be at least 6 characters and capitalized!";
           } else if (!/[A-Z]/.test(values.password)) {
             errors.password = "At least one uppercase letter is required!";
-          } else if (values.password2 !== values.password) {
-            errors.password = "Enter the correct identical password!";
           }
 
           if (!values.password2) {
@@ -54,13 +54,17 @@ const Basic = () => {
             errors.password2 =
               "The password must contain at least one capital Latin letter!";
           } else if (values.password2 !== values.password) {
-            errors.password = "Enter the correct identical password!";
+            errors.password2 = "Enter the correct identical password!";
           }
 
           if (!values.date) {
-            errors.date = "Сhange your date of birth";
-          } else if (date - values.date < 18) {
-            errors.date = "You are under 18";
+            errors.date = "Сhoose your date of birth";
+          } else if (values.date >= dateMiliseconds) {
+            errors.date = "Сhoose your date of birth";
+          }
+
+          if (!values.gender) {
+            errors.gender = "Сhoose your gender";
           }
 
           if (!values.phoneNumber) {
@@ -101,15 +105,23 @@ const Basic = () => {
             <Field type="date" name="date" id="date" />
             <ErrorMessage name="date" component="div" />
             <p />
+
             <label htmlFor="gender">Gender</label>
-            <Field as="select" placeholder="Choose" name="gender" id="gender">
+            <Field
+              as="select"
+              value={values.gender}
+              placeholder="Choose"
+              name="gender"
+              id="gender"
+            >
               <option onSelected disabled selected></option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </Field>
-            <ErrorMessage name="gender" component="div" />
-            <p />
+            <p>
+              <ErrorMessage name="gender" component="div" />
+            </p>
             <label htmlFor="phoneNumber">Phone number</label>
             <InputMask
               mask="+375 (99) 999-99-99"
@@ -120,7 +132,7 @@ const Basic = () => {
             />
             <ErrorMessage name="phoneNumber" component="div" />
             <p />
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} onclick="enterNum()">
               Submit
             </button>
           </Form>
