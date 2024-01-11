@@ -19,9 +19,10 @@ const Basic = () => {
         }}
         validate={(values) => {
           const errors = {};
-          const dateYears = new Date().getFullYear();
-          const dateMiliseconds = Date.now();
-          const adult = 365.25 * 60 * 60 * 24 * 1000;
+          const today = new Date();
+          const year18 = today.getFullYear() - 18;
+          const date18 = new Date(year18, today.getMonth(), today.getDate());
+          const birthDate = new Date(values.date);
 
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
             errors.firstName =
@@ -59,8 +60,10 @@ const Basic = () => {
 
           if (!values.date) {
             errors.date = "Сhoose your date of birth";
-          } else if (values.date >= dateMiliseconds) {
-            errors.date = "Сhoose your date of birth";
+          } else if (birthDate > today) {
+            errors.date = "Сhoose correct date";
+          } else if (birthDate > date18) {
+            errors.date = "You are under 18 years old";
           }
 
           if (!values.gender) {
@@ -105,7 +108,6 @@ const Basic = () => {
             <Field type="date" name="date" id="date" />
             <ErrorMessage name="date" component="div" />
             <p />
-
             <label htmlFor="gender">Gender</label>
             <Field
               as="select"
@@ -119,9 +121,8 @@ const Basic = () => {
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </Field>
-            <p>
-              <ErrorMessage name="gender" component="div" />
-            </p>
+            <ErrorMessage name="gender" component="div" />
+            <p />
             <label htmlFor="phoneNumber">Phone number</label>
             <InputMask
               mask="+375 (99) 999-99-99"
