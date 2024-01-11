@@ -5,3 +5,16 @@ Form {
   border-radius: 10px;
   background-color: #fff;
 }
+
+label {
+  display: block;
+}
+input,
+select {
+  width: 300px; /* Устанавливаем ширину в 300 пикселей */
+}
+/* .input-container {
+  position: relative;
+  margin-bottom: 26px;
+  width: 100%;
+} */

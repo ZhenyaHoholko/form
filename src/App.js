@@ -1,5 +1,6 @@
 // Render Prop
 import React from "react";
+import "./App.css";
 import InputMask from "react-input-mask";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
@@ -88,7 +89,9 @@ const Basic = () => {
       >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
-            <label htmlFor="firstName">Full Name</label>
+            <label className="input-container" htmlFor="firstName">
+              Full Name
+            </label>
             <Field type="input" name="firstName" id="firstName" required />
             <ErrorMessage name="firstName" component="div" />
             <p />
