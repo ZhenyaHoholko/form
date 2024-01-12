@@ -1,12 +1,13 @@
 // Render Prop
 import React from "react";
 import "./App.css";
+import { Button, Checkbox, Input } from "antd";
 import InputMask from "react-input-mask";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const Basic = () => {
   return (
-    <div>
+    <div className="main">
       <h1>Any place in your app!</h1>
       <Formik
         initialValues={{
@@ -26,8 +27,7 @@ const Basic = () => {
           const birthDate = new Date(values.date);
 
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
-            errors.firstName =
-              "Enter the name in Cyrillic or Latin from 2 to 25 characters";
+            errors.firstName = "Enter the name from 2 to 25 characters";
           }
 
           if (!values.email) {
@@ -89,53 +89,89 @@ const Basic = () => {
       >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
-            <label className="input-container" htmlFor="firstName">
-              Full Name
-            </label>
-            <Field type="input" name="firstName" id="firstName" required />
-            <ErrorMessage name="firstName" component="div" />
-            <p />
-            <label htmlFor="email">Email</label>
-            <Field name="email" id="email" placeholder="some@some.some" />
-            <ErrorMessage name="email" component="div" />
-            <p />
-            <label htmlFor="password">Password</label>
-            <Field type="password" name="password" id="password" />
-            <ErrorMessage name="password" component="div" />
-            <p />
-            <label htmlFor="password2">Check password</label>
-            <Field type="password" name="password2" id="password2" />
-            <ErrorMessage name="password2" component="div" />
-            <p />
-            <label htmlFor="date">Date of birth</label>
-            <Field type="date" name="date" id="date" />
-            <ErrorMessage name="date" component="div" />
-            <p />
-            <label htmlFor="gender">Gender</label>
-            <Field
-              as="select"
-              value={values.gender}
-              placeholder="Choose"
-              name="gender"
-              id="gender"
-            >
-              <option onSelected disabled selected></option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </Field>
-            <ErrorMessage name="gender" component="div" />
-            <p />
-            <label htmlFor="phoneNumber">Phone number</label>
-            <InputMask
-              mask="+375 (99) 999-99-99"
-              value={values.phoneNumber}
-              onChange={(e) => setFieldValue("phoneNumber", e.target.value)}
-              placeholder="+375 (29) 777-77-77"
-              id="phoneNumber"
-            />
-            <ErrorMessage name="phoneNumber" component="div" />
-            <p />
+            <p className="container">
+              {/* {" "} */}
+              <label className="input-container" htmlFor="firstName">
+                Full Name
+              </label>
+              <Field type="input" name="firstName" id="firstName" required />
+              <ErrorMessage
+                className="errorMessage"
+                name="firstName"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="email">Email</label>
+              <Field name="email" id="email" placeholder="some@some.some" />
+              <ErrorMessage
+                className="errorMessage"
+                name="email"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="password">Password</label>
+              <Field type="password" name="password" id="password" />
+              <ErrorMessage
+                className="errorMessage"
+                name="password"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="password2">Check password</label>
+              <Field type="password" name="password2" id="password2" />
+              <ErrorMessage
+                className="errorMessage"
+                name="password2"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="date">Date of birth</label>
+              <Field type="date" name="date" id="date" />
+              <ErrorMessage
+                className="errorMessage"
+                name="date"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="gender">Gender</label>
+              <Field
+                as="select"
+                value={values.gender}
+                placeholder="Choose"
+                name="gender"
+                id="gender"
+              >
+                <option onSelected disabled selected></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </Field>
+              <ErrorMessage
+                className="errorMessage"
+                name="gender"
+                component="div"
+              />
+            </p>
+            <p className="container">
+              <label htmlFor="phoneNumber">Phone number</label>
+              <InputMask
+                mask="+375 (99) 999-99-99"
+                value={values.phoneNumber}
+                onChange={(e) => setFieldValue("phoneNumber", e.target.value)}
+                placeholder="+375 (29) 777-77-77"
+                id="phoneNumber"
+              />
+              <ErrorMessage
+                className="errorMessage"
+                name="phoneNumber"
+                component="div"
+              />
+            </p>
             <button type="submit" disabled={isSubmitting} onclick="enterNum()">
               Submit
             </button>
