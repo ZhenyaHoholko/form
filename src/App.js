@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 const Basic = () => {
   return (
     <div className="main">
-      <h1>Registration form</h1>
+      <h1>Форма регистрации</h1>
       <Formik
         initialValues={{
           firstName: "",
@@ -27,56 +27,57 @@ const Basic = () => {
           const birthDate = new Date(values.date);
 
           if (!/^[а-яёА-ЯЁA-Z0-9._%+-]{2,25}$/i.test(values.firstName)) {
-            errors.firstName = "Enter the name from 2 to 25 characters";
+            errors.firstName = "Введите имя от 2 до 25 символов";
           }
 
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = "Введите email";
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.email = "Invalid email address";
+            errors.email = "Неверный адрес электронной почты";
           }
 
           if (!values.password) {
-            errors.password = "Required";
+            errors.password = "Введите пароль";
           } else if (values.password.length < 6) {
             errors.password =
-              "Length must be at least 6 characters and capitalized!";
+              "Пароль должен быть не менее 6 символов и содержать большие буквы";
           } else if (!/[A-Z]/.test(values.password)) {
-            errors.password = "At least one uppercase letter is required!";
+            errors.password =
+              "Пароль должен содержать хотя бы одну большую букву";
           }
 
           if (!values.password2) {
-            errors.password2 = "Required";
+            errors.password2 = "Введите пароль";
           } else if (values.password2.length < 6) {
             errors.password2 =
-              "Length must be at least 6 characters and capitalized!";
+              "Пароль должен быть не менее 6 символов и содержать большие буквы";
           } else if (!/[A-Z]/.test(values.password)) {
             errors.password2 =
-              "The password must contain at least one capital Latin letter!";
+              "Пароль должен быть не менее 6 символов и содержать большие буквы";
           } else if (values.password2 !== values.password) {
-            errors.password2 = "Enter the correct identical password!";
+            errors.password2 = "Введите идетичный пароль";
           }
 
           if (!values.date) {
-            errors.date = "Сhoose your date of birth";
+            errors.date = "Выберите дату рождения";
           } else if (birthDate > today) {
-            errors.date = "Сhoose correct date";
+            errors.date = "Выберите корректную дату рождения";
           } else if (birthDate > date18) {
-            errors.date = "You are under 18 years old";
+            errors.date = "Вы моложе 18 лет";
           }
 
           if (!values.gender) {
-            errors.gender = "Сhoose your gender";
+            errors.gender = "ВЫберите свой пол";
           }
 
           if (!values.phoneNumber) {
-            errors.phoneNumber = "Write phone number";
+            errors.phoneNumber = "Введите номер телефона";
           } else if (
             !/^\+375 \(\d{2}\) \d{3}-\d{2}-\d{2}$/.test(values.phoneNumber)
           ) {
-            errors.phoneNumber = "Write phone number correct";
+            errors.phoneNumber = "Введите корректный номер телефона";
           }
           return errors;
         }}
@@ -92,7 +93,7 @@ const Basic = () => {
           <Form>
             <p className="container">
               <label className="input-container" htmlFor="firstName">
-                <a className="title">Full Name</a>
+                <a className="title">Имя</a>
               </label>
               <Field
                 className="inputAll"
@@ -125,7 +126,7 @@ const Basic = () => {
             </p>
             <p className="container">
               <label htmlFor="password">
-                <a className="title">Password</a>
+                <a className="title">Пароль</a>
               </label>
               <Field
                 className="inputAll"
@@ -141,7 +142,7 @@ const Basic = () => {
             </p>
             <p className="container">
               <label htmlFor="password2">
-                <a className="title">Check password</a>
+                <a className="title">Пароль (повторно)</a>
               </label>
               <Field
                 className="inputAll"
@@ -157,7 +158,7 @@ const Basic = () => {
             </p>
             <p className="container">
               <label htmlFor="date">
-                <a className="title">Date of birth</a>
+                <a className="title">Дата рождения</a>
               </label>
               <Field
                 className="inputAll"
@@ -175,7 +176,7 @@ const Basic = () => {
             </p>
             <p className="container">
               <label htmlFor="gender">
-                <a className="title">Gender</a>
+                <a className="title">Пол</a>
               </label>
               <Select
                 as={Select}
@@ -186,9 +187,9 @@ const Basic = () => {
                 className="genderField"
                 onChange={(value) => setFieldValue("gender", value)}
               >
-                <Select.Option value="Male">Male</Select.Option>
-                <Select.Option value="Female">Female</Select.Option>
-                <Select.Option value="Other">Other</Select.Option>
+                <Select.Option value="Male">Мужчина</Select.Option>
+                <Select.Option value="Female">Женщина</Select.Option>
+                <Select.Option value="Other">Другой</Select.Option>
               </Select>
               <ErrorMessage
                 className="errorMessage"
@@ -199,7 +200,7 @@ const Basic = () => {
 
             <p className="container input-container">
               <label htmlFor="phoneNumber">
-                <a className="title">Phone number</a>
+                <a className="title">Номер телефона</a>
               </label>
               <InputMask
                 className="inputAll"
