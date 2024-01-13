@@ -1,14 +1,14 @@
 // Render Prop
 import React from "react";
 import "./App.css";
-import { Button, Checkbox, Input } from "antd";
+import { Input, Select, Button } from "antd";
 import InputMask from "react-input-mask";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const Basic = () => {
   return (
     <div className="main">
-      <h1>Any place in your app!</h1>
+      <h1>Registration form</h1>
       <Formik
         initialValues={{
           firstName: "",
@@ -83,6 +83,7 @@ const Basic = () => {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
+            alert("Вы успешно зарегистрировались!");
             setSubmitting(false);
           }, 400);
         }}
@@ -90,11 +91,16 @@ const Basic = () => {
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <p className="container">
-              {/* {" "} */}
               <label className="input-container" htmlFor="firstName">
-                Full Name
+                <a className="title">Full Name</a>
               </label>
-              <Field type="input" name="firstName" id="firstName" required />
+              <Field
+                className="inputAll"
+                type="input"
+                name="firstName"
+                id="firstName"
+                required
+              />
               <ErrorMessage
                 className="errorMessage"
                 name="firstName"
@@ -102,8 +108,15 @@ const Basic = () => {
               />
             </p>
             <p className="container">
-              <label htmlFor="email">Email</label>
-              <Field name="email" id="email" placeholder="some@some.some" />
+              <label htmlFor="email">
+                <a className="title">Email</a>
+              </label>
+              <Field
+                className="inputAll "
+                name="email"
+                id="email"
+                placeholder="some@some.some"
+              />
               <ErrorMessage
                 className="errorMessage"
                 name="email"
@@ -111,8 +124,15 @@ const Basic = () => {
               />
             </p>
             <p className="container">
-              <label htmlFor="password">Password</label>
-              <Field type="password" name="password" id="password" />
+              <label htmlFor="password">
+                <a className="title">Password</a>
+              </label>
+              <Field
+                className="inputAll"
+                type="password"
+                name="password"
+                id="password"
+              />
               <ErrorMessage
                 className="errorMessage"
                 name="password"
@@ -120,8 +140,15 @@ const Basic = () => {
               />
             </p>
             <p className="container">
-              <label htmlFor="password2">Check password</label>
-              <Field type="password" name="password2" id="password2" />
+              <label htmlFor="password2">
+                <a className="title">Check password</a>
+              </label>
+              <Field
+                className="inputAll"
+                type="password"
+                name="password2"
+                id="password2"
+              />
               <ErrorMessage
                 className="errorMessage"
                 name="password2"
@@ -129,8 +156,17 @@ const Basic = () => {
               />
             </p>
             <p className="container">
-              <label htmlFor="date">Date of birth</label>
-              <Field type="date" name="date" id="date" />
+              <label htmlFor="date">
+                <a className="title">Date of birth</a>
+              </label>
+              <Field
+                className="inputAll"
+                type="date"
+                id="date"
+                name="date"
+                value={values.date}
+                onChange={(e) => setFieldValue("date", e.currentTarget.value)}
+              />
               <ErrorMessage
                 className="errorMessage"
                 name="date"
@@ -138,28 +174,35 @@ const Basic = () => {
               />
             </p>
             <p className="container">
-              <label htmlFor="gender">Gender</label>
-              <Field
-                as="select"
+              <label htmlFor="gender">
+                <a className="title">Gender</a>
+              </label>
+              <Select
+                as={Select}
                 value={values.gender}
                 placeholder="Choose"
                 name="gender"
                 id="gender"
+                className="genderField"
+                onChange={(value) => setFieldValue("gender", value)}
               >
-                <option onSelected disabled selected></option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </Field>
+                <Select.Option value="Male">Male</Select.Option>
+                <Select.Option value="Female">Female</Select.Option>
+                <Select.Option value="Other">Other</Select.Option>
+              </Select>
               <ErrorMessage
                 className="errorMessage"
                 name="gender"
                 component="div"
               />
             </p>
-            <p className="container">
-              <label htmlFor="phoneNumber">Phone number</label>
+
+            <p className="container input-container">
+              <label htmlFor="phoneNumber">
+                <a className="title">Phone number</a>
+              </label>
               <InputMask
+                className="inputAll"
                 mask="+375 (99) 999-99-99"
                 value={values.phoneNumber}
                 onChange={(e) => setFieldValue("phoneNumber", e.target.value)}
@@ -172,7 +215,11 @@ const Basic = () => {
                 component="div"
               />
             </p>
-            <button type="submit" disabled={isSubmitting} onclick="enterNum()">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="buttonPush"
+            >
               Submit
             </button>
           </Form>

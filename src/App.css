@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@1,100&family=Kanit&family=Open+Sans&family=Poppins:wght@400;500;600;700&display=swap");
 .main {
   display: grid;
   place-items: center;
@@ -6,33 +7,88 @@
 Form {
   width: 100%;
   max-width: 325px;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 30px 15px 30px;
   border-radius: 10px;
-  background-color: #ebdbdb;
+  background-color: #d1ecff;
 }
+
 .errorMessage {
   font-size: 10px;
-  padding-bottom: 5px;
+  padding: 0px 0px 0px 10px;
+  opacity: 90%;
+  color: red;
+  align-self: flex-start;
 }
 
 label {
   display: block;
+  margin-top: 10px;
 }
+
 input,
-select {
-  width: 300px;
+select,
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-bottom: 10px;
 }
 
 h1 {
   text-align: center;
+  font-size: 20px;
 }
 
 .container {
   padding: 3px;
   height: 50px;
 }
+
 button {
   border-radius: 3px;
   background-color: rgb(204, 181, 224);
-  /* place-items: center; */
+  display: block;
+  margin: 0 auto;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  color: black;
+}
+
+.genderField {
+  width: 100%;
+}
+
+.title {
+  padding: 10px;
+}
+.inputAll {
+  border: 0px solid #ccc;
+  outline: none;
+  border-radius: 6px;
+  margin: 0;
+}
+.errorInputPhoneNumber {
+  font-size: 10px;
+  /* padding: 0 -5px 0 0px; */
+  opacity: 90%;
+  color: red;
+  align-self: flex-start;
+}
+.buttonPush {
+  color: #ffffff;
+  /* justify-content: center; */
+  border: none;
+  background: rgb(25, 103, 239);
+  padding: 6px 20px;
+  margin: 50px auto 0;
+}
+.inputAll::placeholder {
+  color: #555;
+  opacity: 0.8;
+}
+.inputEmail::placeholder {
+  color: #555;
+  opacity: 1;
 }
